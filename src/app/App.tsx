@@ -602,7 +602,7 @@ function Footer() {
             © {new Date().getFullYear()} Sangama Retreat · sangamaretreat.com
           </p>
           <div className="text-right">
-            <a href="https://tantravruksha.in" target="_blank" rel="noopener noreferrer" className="text-white font-bold text-xs transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>tantravruksha.in</a>
+            <a href="https://tantravruksha.in" target="_blank" rel="noopener noreferrer" className="text-white font-bold text-xs transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}><i>Built By -   </i><b><u>tantravruksha.in</u></b></a>
           </div>
         </div>
       </div>
