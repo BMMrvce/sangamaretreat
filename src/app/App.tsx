@@ -296,7 +296,7 @@ const PACKAGES: {
     icons: [Coffee, Wind, Users, Bike], iLbls: [ "Group", "Activities","Buffet"],
   },
   {
-    name: "Tent Stay", price: "₹1,799", unit: "/person", badge: "Adventure", occupancy: "Up to 2 Guests",
+    name: "Tent Stay", price: "₹1,999", unit: "/person", badge: "Adventure", occupancy: "Up to 2 Guests",
     img: imgTent, alt: "Tent camping under the stars",
     desc: "Experience nature closely in comfortable tents with bedding, meals, and access to all retreat amenities.",
     icons: [Coffee, Mountain, Leaf], iLbls: ["Buffet", "Nature", "Green"],
@@ -404,7 +404,7 @@ const OUT_ACTS: { n: string; I: IconComp }[] = [
 ];
 const IN_ACTS: { n: string; I: IconComp }[] = [
   { n: "Snooker", I: Gamepad2 }, { n: "Table Tennis", I: Gamepad2 }, { n: "Football", I: Gamepad2 },
-  { n: "Carrom", I: Gamepad2 }, { n: "Chess", I: Gamepad2 },
+  { n: "Carrom", I: Gamepad2 }, { n: "Chess", I: Gamepad2 },{ n: "Foosball", I: Gamepad2 },
 ];
 const EXP: { n: string; I: IconComp; img: string; alt: string }[] = [
   { n: "Swimming Pool", I: Sparkles, img: imgPool, alt: "Swimming pool" },
