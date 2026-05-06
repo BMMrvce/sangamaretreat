@@ -10,7 +10,7 @@ import {
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 
 import { imgAerial, imgPool, imgVilla, imgPlayArea, imgBuddha } from "@/assets/hero";
-import { imgStdRoom, imgQuadRoom, imgRopeArch, imgOutdoorGym2, imgKidsPlay, imgOutdoorGym1 } from "@/assets/gallery";
+import { imgStdRoom, imgQuadRoom, imgRopeArch, imgOutdoorGym2, imgDayOut, imgKidsPlay, imgOutdoorGym1, imgTent } from "@/assets/gallery";
 
 const PHONE = "+919353556617";
 const PHONE_DISPLAY = "+91 93535 56617";
@@ -269,19 +269,19 @@ const ROOMS: {
     name: "Standard Room", price: "₹3,000", unit: "/person", badge: "Popular", occupancy: "2 Guests",
     img: imgStdRoom, alt: "Standard room with garden view",
     desc: "Thoughtfully appointed rooms with lush garden views and curated amenities for a peaceful retreat.",
-    icons: [Wifi, Coffee, Wind, Tv], iLbls: ["WiFi", "Café", "AC", "TV"],
+    icons: [Wifi, Coffee, Wind, Tv], iLbls: ["WiFi", "Buffet", "AC", "TV"],
   },
   {
     name: "Quad Room", price: "₹2,750", unit: "/person", badge: "Best Value", occupancy: "4 Guests",
     img: imgQuadRoom, alt: "Quad room building exterior",
     desc: "Vibrant quad-occupancy rooms ideal for groups and families seeking shared adventures in nature.",
-    icons: [Wifi, Coffee, Wind, Car], iLbls: ["WiFi", "Café", "AC", "Parking"],
+    icons: [Wifi, Coffee, Wind, Car], iLbls: ["WiFi", "Buffet", "AC", "Parking"],
   },
   {
     name: "2BHK Villa", price: "₹3,500", unit: "/person", badge: "Premium", occupancy: "6 Guests",
     img: imgVilla, alt: "2BHK Villa with tropical garden",
     desc: "Private two-bedroom villas with tropical gardens, premium furnishings, and exclusive tranquil access.",
-    icons: [Wifi, Coffee, Wind, Tv], iLbls: ["WiFi", "Café", "AC", "TV"],
+    icons: [Wifi, Coffee, Wind, Tv], iLbls: ["WiFi", "Buffet", "AC", "TV"],
   },
 ];
 
@@ -291,15 +291,15 @@ const PACKAGES: {
 }[] = [
   {
     name: "Day Out", price: "₹999", unit: "/person", badge: "Budget Friendly", occupancy: "Day Visit",
-    img: imgPool, alt: "Day out activities at the pool",
+    img: imgDayOut, alt: "Day out activities at the retreat",
     desc: "Perfect for a fun-filled day with access to all activities, meals, and facilities. No overnight stay required.",
-    icons: [Coffee, Wind, Users, Bike], iLbls: ["Café", "AC", "Group", "Activities"],
+    icons: [Coffee, Wind, Users, Bike], iLbls: [ "Group", "Activities","Buffet"],
   },
   {
-    name: "Tent Stay", price: "₹1,799", unit: "/person", badge: "Adventure", occupancy: "Up to 4 Guests",
-    img: imgRopeArch, alt: "Tent camping under the stars",
+    name: "Tent Stay", price: "₹1,799", unit: "/person", badge: "Adventure", occupancy: "Up to 2 Guests",
+    img: imgTent, alt: "Tent camping under the stars",
     desc: "Experience nature closely in comfortable tents with bedding, meals, and access to all retreat amenities.",
-    icons: [Coffee, Mountain, Leaf, Wifi], iLbls: ["Café", "Nature", "Green", "WiFi"],
+    icons: [Coffee, Mountain, Leaf], iLbls: ["Buffet", "Nature", "Green"],
   },
 ];
 
