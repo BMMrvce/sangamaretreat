@@ -86,6 +86,7 @@ function Navbar() {
   const links = [
     { l: "About",      h: "#about" },
     { l: "Rooms",      h: "#rooms" },
+    { l: "Packages",   h: "#packages" },
     { l: "Activities", h: "#activities" },
     { l: "Gallery",    h: "#gallery" },
     { l: "Contact",    h: "#contact" },
@@ -284,6 +285,24 @@ const ROOMS: {
   },
 ];
 
+const PACKAGES: {
+  name: string; price: string; unit: string; badge: string; occupancy: string;
+  img: string; alt: string; desc: string; icons: IconComp[]; iLbls: string[];
+}[] = [
+  {
+    name: "Day Out", price: "₹999", unit: "/person", badge: "Budget Friendly", occupancy: "Day Visit",
+    img: imgPool, alt: "Day out activities at the pool",
+    desc: "Perfect for a fun-filled day with access to all activities, meals, and facilities. No overnight stay required.",
+    icons: [Coffee, Wind, Users, Bike], iLbls: ["Café", "AC", "Group", "Activities"],
+  },
+  {
+    name: "Tent Stay", price: "₹1,799", unit: "/person", badge: "Adventure", occupancy: "Up to 4 Guests",
+    img: imgRopeArch, alt: "Tent camping under the stars",
+    desc: "Experience nature closely in comfortable tents with bedding, meals, and access to all retreat amenities.",
+    icons: [Coffee, Mountain, Leaf, Wifi], iLbls: ["Café", "Nature", "Green", "WiFi"],
+  },
+];
+
 function Rooms() {
   return (
     <section id="rooms" className="min-h-screen flex items-center py-20 bg-[#f0ead8]">
@@ -315,6 +334,53 @@ function Rooms() {
                     <div key={j} className="flex flex-col items-center gap-1 text-[#2D5016]">
                       <Ic size={17} />
                       <span className="text-[9px] text-muted-foreground" style={{ fontFamily: "'Jost',sans-serif" }}>{r.iLbls[j]}</span>
+                    </div>
+                  ))}
+                </div>
+                <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-2.5 bg-[#25D366] text-white text-sm font-medium tracking-widest uppercase hover:bg-[#20b858] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
+                  <MessageCircle size={16} /> Book via WhatsApp
+                </a>
+              </div>
+            </Fade>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── PACKAGES ─────────────────────────────────────────────────────────────────
+function Packages() {
+  return (
+    <section id="packages" className="py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-5">
+        <Fade className="text-center mb-12">
+          <Label>Special Offers</Label>
+          <h2 className="mt-3 font-bold" style={{ fontFamily: "'Oswald',sans-serif", fontSize: "clamp(1.9rem,3.5vw,2.8rem)", letterSpacing: ".02em" }}>Flexible Stays & Day Escapes</h2>
+        </Fade>
+        <div className="grid md:grid-cols-2 gap-7 max-w-3xl mx-auto">
+          {PACKAGES.map((p, i) => (
+            <Fade key={p.name} delay={i * 100} className="group bg-card shadow-md overflow-hidden flex flex-col">
+              <div className="relative h-60 overflow-hidden bg-[#2D5016]/10">
+                <ImageWithFallback src={p.img} alt={p.alt} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
+                <span className="absolute top-3 right-3 px-2.5 py-1 bg-[#C4A45A] text-[#1A2416] text-[10px] font-bold tracking-widest uppercase" style={{ fontFamily: "'Jost',sans-serif" }}>{p.badge}</span>
+                <div className="absolute bottom-3 left-4">
+                  <span className="text-white font-bold text-2xl" style={{ fontFamily: "'Oswald',sans-serif" }}>{p.price}</span>
+                  <span className="text-white/65 text-sm ml-1" style={{ fontFamily: "'Jost',sans-serif" }}>{p.unit}</span>
+                </div>
+              </div>
+              <div className="p-5 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-bold text-lg" style={{ fontFamily: "'Oswald',sans-serif", letterSpacing: ".05em" }}>{p.name}</h3>
+                  <div className="flex items-center gap-1 text-muted-foreground text-xs" style={{ fontFamily: "'Jost',sans-serif" }}><Users size={12} />{p.occupancy}</div>
+                </div>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4 flex-1" style={{ fontFamily: "'Lora',serif" }}>{p.desc}</p>
+                <div className="flex gap-4 mb-5">
+                  {p.icons.map((Ic, j) => (
+                    <div key={j} className="flex flex-col items-center gap-1 text-[#2D5016]">
+                      <Ic size={17} />
+                      <span className="text-[9px] text-muted-foreground" style={{ fontFamily: "'Jost',sans-serif" }}>{p.iLbls[j]}</span>
                     </div>
                   ))}
                 </div>
@@ -637,6 +703,7 @@ export default function App() {
 
       <About />
       <Rooms />
+      <Packages />
       <Activities />
       <Gallery />
       <WhyUs />
