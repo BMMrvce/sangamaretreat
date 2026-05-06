@@ -403,7 +403,7 @@ const OUT_ACTS: { n: string; I: IconComp }[] = [
   { n: "Archery", I: Target }, { n: "Gun Shoot", I: Target }, { n: "Watch Tower", I: Compass },
 ];
 const IN_ACTS: { n: string; I: IconComp }[] = [
-  { n: "Snooker", I: Gamepad2 }, { n: "Table Tennis", I: Gamepad2 }, { n: "Football", I: Gamepad2 },
+  { n: "Snooker", I: Gamepad2 }, { n: "Table Tennis", I: Gamepad2 },
   { n: "Carrom", I: Gamepad2 }, { n: "Chess", I: Gamepad2 },{ n: "Foosball", I: Gamepad2 },
 ];
 const EXP: { n: string; I: IconComp; img: string; alt: string }[] = [
