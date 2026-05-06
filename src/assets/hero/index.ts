@@ -3,5 +3,7 @@ import imgPool from "./WhatsApp_Image_2026-05-05_at_1.20.43_PM__1_-1.jpeg";
 import imgVilla from "./2bhk_villa-1.jpeg";
 import imgPlayArea from "./play_area-1.jpeg";
 import imgBuddha from "./WhatsApp_Image_2026-05-05_at_1.20.43_PM-1.jpeg";
+import imgHero1 from "./image.png";
+import imgHero2 from "./image copy.png";
 
-export {  imgAerial, imgBuddha, imgPool, imgVilla, imgPlayArea };
+export { imgAerial, imgBuddha, imgPool, imgVilla, imgPlayArea, imgHero1, imgHero2 };

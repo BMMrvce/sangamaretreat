@@ -9,8 +9,8 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 
-import { imgAerial, imgPool, imgVilla, imgPlayArea, imgBuddha } from "@/assets/hero";
-import { imgStdRoom, imgQuadRoom, imgRopeArch, imgOutdoorGym2, imgDayOut, imgKidsPlay, imgOutdoorGym1, imgTent } from "@/assets/gallery";
+import { imgAerial, imgPool, imgVilla, imgPlayArea, imgBuddha, imgHero1, imgHero2 } from "@/assets/hero";
+import { imgStdRoom, imgQuadRoom, imgRopeArch, imgOutdoorGym2, imgDayOut, imgKidsPlay, imgOutdoorGym1, imgTent, imgGallery } from "@/assets/gallery";
 
 const PHONE = "+919353556617";
 const PHONE_DISPLAY = "+91 93535 56617";
@@ -130,7 +130,7 @@ function Navbar() {
 // ── HERO ─────────────────────────────────────────────────────────────────────
 function Hero() {
   const [idx, setIdx] = useState(0);
-  const slides = [imgAerial, imgBuddha, imgPool, imgVilla, imgPlayArea];
+  const slides = [imgAerial, imgBuddha, imgPool, imgVilla, imgPlayArea, imgHero1, imgHero2];
   useEffect(() => {
     const id = setInterval(() => setIdx(p => (p + 1) % slides.length), 6000);
     return () => clearInterval(id);
@@ -502,6 +502,7 @@ const GALLERY = [
   { src: imgKidsPlay,    alt: "Kids play area",          span: "" },
   { src: imgOutdoorGym1, alt: "Gym and seating area",    span: "" },
   { src: imgPlayArea,    alt: "Full activity play area", span: "" },
+  { src: imgGallery,     alt: "Gallery showcase",        span: "" },
 ];
 
 function Gallery() {
