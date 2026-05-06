@@ -5,7 +5,7 @@ import {
   Wifi, Coffee, Wind, Tv, Car, Users,
   Mountain, Bike, Trophy, Gamepad2, Target,
   ChevronRight, MessageCircle, Leaf, Heart,
-  Sparkles, Award, ZoomIn, Dumbbell,
+  Sparkles, Award, ZoomIn, Dumbbell, Flame, Compass, MapPinOff,
 } from "lucide-react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 
@@ -400,6 +400,7 @@ function Packages() {
 const OUT_ACTS: { n: string; I: IconComp }[] = [
   { n: "Cricket", I: Trophy }, { n: "Volleyball", I: Target }, { n: "Shuttle Cock", I: Target },
   { n: "Basketball", I: Trophy }, { n: "Outdoor Gym", I: Dumbbell }, { n: "ATV Bike", I: Bike },
+  { n: "Archery", I: Target }, { n: "Gun Shoot", I: Target }, { n: "Watch Tower", I: Compass },
 ];
 const IN_ACTS: { n: string; I: IconComp }[] = [
   { n: "Snooker", I: Gamepad2 }, { n: "Table Tennis", I: Gamepad2 }, { n: "Football", I: Gamepad2 },
@@ -416,6 +417,17 @@ const CS = [
   { n: "Rope Activity", d: "Aerial rope courses through the forest canopy" },
   { n: "Zip Line", d: "Soar across the valley on a thrilling zip line" },
   { n: "Sky Cycling", d: "Pedal through the sky on a suspended track" },
+];
+
+const AMENITIES: { n: string; d: string; I: IconComp }[] = [
+  { n: "Bon Fire", d: "Gather around for cozy evenings under the stars with campfire stories and music.", I: Flame },
+  { n: "Nature Trekking", d: "Guided treks through pristine forest trails with expert naturalists.", I: Mountain },
+];
+
+const NEARBY_SIGHTS: { n: string; d: string; I: IconComp }[] = [
+  { n: "Sangama Lake", d: "A serene confluence of waters surrounded by lush green landscapes.", I: Compass },
+  { n: "Chunchi Falls", d: "Majestic waterfalls cascading down scenic rocky cliffs.", I: Leaf },
+  { n: "Mekedatu", d: "Breathtaking gorge where two rivers meet amidst picturesque valleys.", I: MapPin },
 ];
 
 function Activities() {
@@ -484,6 +496,58 @@ function Activities() {
               </Fade>
             ))}
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── AMENITIES ────────────────────────────────────────────────────────────────
+function Amenities() {
+  return (
+    <section className="py-20 bg-[#1A2416]">
+      <div className="max-w-7xl mx-auto px-5">
+        <Fade className="text-center mb-12">
+          <Label>Premium Amenities</Label>
+          <h2 className="mt-3 font-bold text-white" style={{ fontFamily: "'Oswald',sans-serif", fontSize: "clamp(1.9rem,3.5vw,2.8rem)", letterSpacing: ".02em" }}>Unforgettable Experiences</h2>
+        </Fade>
+        <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          {AMENITIES.map((a, i) => (
+            <Fade key={a.n} delay={i * 100} className="bg-gradient-to-br from-[#2D5016]/80 to-[#1a3a0f] border border-[#C4A45A]/30 hover:border-[#C4A45A]/60 p-8 transition-all hover:shadow-lg hover:shadow-[#C4A45A]/10">
+              <div className="flex items-start gap-4 mb-3">
+                <div className="w-14 h-14 rounded-lg bg-[#C4A45A]/20 flex items-center justify-center flex-shrink-0">
+                  <a.I size={28} className="text-[#C4A45A]" />
+                </div>
+                <h3 className="text-white font-bold text-xl" style={{ fontFamily: "'Oswald',sans-serif" }}>{a.n}</h3>
+              </div>
+              <p className="text-white/70 text-sm leading-relaxed" style={{ fontFamily: "'Lora',serif" }}>{a.d}</p>
+            </Fade>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── NEARBY SIGHTSEEING ───────────────────────────────────────────────────────
+function NearbySights() {
+  return (
+    <section className="py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-5">
+        <Fade className="text-center mb-12">
+          <Label>Nearby Attractions</Label>
+          <h2 className="mt-3 font-bold" style={{ fontFamily: "'Oswald',sans-serif", fontSize: "clamp(1.9rem,3.5vw,2.8rem)", letterSpacing: ".02em" }}>Explore the Region</h2>
+        </Fade>
+        <div className="grid sm:grid-cols-3 gap-6">
+          {NEARBY_SIGHTS.map((s, i) => (
+            <Fade key={s.n} delay={i * 100} className="group bg-gradient-to-br from-[#C4A45A]/10 to-[#2D5016]/20 border-2 border-[#C4A45A]/40 hover:border-[#C4A45A] p-8 transition-all hover:shadow-lg hover:shadow-[#C4A45A]/20 hover:-translate-y-2">
+              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#C4A45A]/20 group-hover:bg-[#C4A45A]/40 mb-5 mx-auto transition-colors">
+                <s.I size={32} className="text-[#C4A45A]" />
+              </div>
+              <h3 className="text-center font-bold text-xl mb-3 text-[#2D5016]" style={{ fontFamily: "'Oswald',sans-serif" }}>{s.n}</h3>
+              <p className="text-center text-muted-foreground text-sm leading-relaxed" style={{ fontFamily: "'Lora',serif" }}>{s.d}</p>
+            </Fade>
+          ))}
         </div>
       </div>
     </section>
@@ -706,6 +770,8 @@ export default function App() {
       <Rooms />
       <Packages />
       <Activities />
+      <Amenities />
+      <NearbySights />
       <Gallery />
       <WhyUs />
       <Contact />
