@@ -422,6 +422,7 @@ const CS = [
 const AMENITIES: { n: string; d: string; I: IconComp }[] = [
   { n: "Bon Fire", d: "Gather around for cozy evenings under the stars with campfire stories and music.", I: Flame },
   { n: "Nature Trekking", d: "Guided treks through pristine forest trails with expert naturalists.", I: Mountain },
+  { n: "Rain Dance", d: "Enjoy a refreshing rain dance with music and fun for all ages.", I: Sparkles },
 ];
 
 const NEARBY_SIGHTS: { n: string; d: string; I: IconComp }[] = [
@@ -511,7 +512,7 @@ function Amenities() {
           <Label>Premium Amenities</Label>
           <h2 className="mt-3 font-bold text-white" style={{ fontFamily: "'Oswald',sans-serif", fontSize: "clamp(1.9rem,3.5vw,2.8rem)", letterSpacing: ".02em" }}>Unforgettable Experiences</h2>
         </Fade>
-        <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {AMENITIES.map((a, i) => (
             <Fade key={a.n} delay={i * 100} className="bg-gradient-to-br from-[#2D5016]/80 to-[#1a3a0f] border border-[#C4A45A]/30 hover:border-[#C4A45A]/60 p-8 transition-all hover:shadow-lg hover:shadow-[#C4A45A]/10">
               <div className="flex items-start gap-4 mb-3">
