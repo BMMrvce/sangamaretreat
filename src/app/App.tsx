@@ -16,6 +16,8 @@ const PHONE = "+919353556617";
 const PHONE_DISPLAY = "+91 93535 56617";
 const ADDRESS = "Kanakapura-Sangam Road, Elagalli, Uyyamballi Hobli, Kanakapura, Karnataka 562117";
 const WA_LINK = `https://wa.me/${PHONE}?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Sangama%20Retreat`;
+// Set to true to hide phone number and WhatsApp links everywhere
+const HIDE_CONTACT = true;
 
 // ── hooks ────────────────────────────────────────────────────────────────────
 function useScrolled(px = 60) {
@@ -105,14 +107,16 @@ function Navbar() {
             </li>
           ))}
         </ul>
-        <div className="hidden md:flex gap-2">
-          <a href={`tel:${PHONE}`} className="flex items-center gap-1.5 px-4 py-2 border border-white/30 text-white/75 text-sm hover:border-[#C4A45A] hover:text-[#C4A45A] transition-all" style={{ fontFamily: "'Jost',sans-serif" }}>
-            <Phone size={13} /> Call
-          </a>
-          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="px-5 py-2 bg-[#C4A45A] text-[#1A2416] text-sm font-semibold tracking-wider uppercase hover:bg-[#d4b46a] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
-            Book Now
-          </a>
-        </div>
+        {!HIDE_CONTACT && (
+          <div className="hidden md:flex gap-2">
+            <a href={`tel:${PHONE}`} className="flex items-center gap-1.5 px-4 py-2 border border-white/30 text-white/75 text-sm hover:border-[#C4A45A] hover:text-[#C4A45A] transition-all" style={{ fontFamily: "'Jost',sans-serif" }}>
+              <Phone size={13} /> Call
+            </a>
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="px-5 py-2 bg-[#C4A45A] text-[#1A2416] text-sm font-semibold tracking-wider uppercase hover:bg-[#d4b46a] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
+              Book Now
+            </a>
+          </div>
+        )}
         <button onClick={() => setOpen(!open)} className="md:hidden text-white"><Menu size={22} /></button>
       </div>
       {open && (
@@ -120,7 +124,7 @@ function Navbar() {
           {links.map(({ l, h }) => (
             <a key={l} href={h} onClick={() => setOpen(false)} className="text-white/75 text-sm tracking-widest uppercase" style={{ fontFamily: "'Jost',sans-serif" }}>{l}</a>
           ))}
-          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="py-3 bg-[#C4A45A] text-[#1A2416] text-sm font-bold tracking-wider uppercase text-center">Book Now</a>
+          {!HIDE_CONTACT && <a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="py-3 bg-[#C4A45A] text-[#1A2416] text-sm font-bold tracking-wider uppercase text-center">Book Now</a>}
         </div>
       )}
     </nav>
@@ -152,12 +156,16 @@ function Hero() {
           Luxury stays, adventure activities, and unforgettable experiences surrounded by nature.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-7 py-3.5 bg-[#25D366] text-white font-semibold tracking-[.12em] uppercase text-sm hover:bg-[#20b858] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
-            <MessageCircle size={17} /> WhatsApp Us
-          </a>
-          <a href={`tel:${PHONE}`} className="flex items-center gap-2 px-7 py-3.5 bg-[#C4A45A] text-[#1A2416] font-semibold tracking-[.12em] uppercase text-sm hover:bg-[#d4b46a] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
-            <Phone size={17} /> Call Now
-          </a>
+          {!HIDE_CONTACT && (
+            <>
+              <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-7 py-3.5 bg-[#25D366] text-white font-semibold tracking-[.12em] uppercase text-sm hover:bg-[#20b858] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
+                <MessageCircle size={17} /> WhatsApp Us
+              </a>
+              <a href={`tel:${PHONE}`} className="flex items-center gap-2 px-7 py-3.5 bg-[#C4A45A] text-[#1A2416] font-semibold tracking-[.12em] uppercase text-sm hover:bg-[#d4b46a] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
+                <Phone size={17} /> Call Now
+              </a>
+            </>
+          )}
           <a href="#about" className="px-7 py-3.5 border border-white/50 text-white text-sm tracking-[.12em] uppercase hover:border-[#C4A45A] hover:text-[#C4A45A] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
             Explore Retreat
           </a>
@@ -177,6 +185,7 @@ function Hero() {
 
 // ── FLOATING BUTTONS ─────────────────────────────────────────────────────────
 function FloatingBtns() {
+  if (HIDE_CONTACT) return null;
   return (
     <div className="fixed bottom-24 right-4 z-50 flex flex-col gap-3">
       <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
@@ -249,9 +258,11 @@ function About() {
               </div>
             ))}
           </div>
-          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-[#2D5016] text-white text-sm font-medium tracking-widest uppercase hover:bg-[#3d6020] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
-            Enquire Now <ArrowRight size={15} />
-          </a>
+          {!HIDE_CONTACT && (
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-[#2D5016] text-white text-sm font-medium tracking-widest uppercase hover:bg-[#3d6020] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
+              Enquire Now <ArrowRight size={15} />
+            </a>
+          )}
         </Fade>
       </div>
     </section>
@@ -337,9 +348,11 @@ function Rooms() {
                     </div>
                   ))}
                 </div>
-                <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-2.5 bg-[#25D366] text-white text-sm font-medium tracking-widest uppercase hover:bg-[#20b858] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
-                  <MessageCircle size={16} /> Book via WhatsApp
-                </a>
+                {!HIDE_CONTACT && (
+                  <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-2.5 bg-[#25D366] text-white text-sm font-medium tracking-widest uppercase hover:bg-[#20b858] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
+                    <MessageCircle size={16} /> Book via WhatsApp
+                  </a>
+                )}
               </div>
             </Fade>
           ))}
@@ -384,9 +397,11 @@ function Packages() {
                     </div>
                   ))}
                 </div>
-                <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-2.5 bg-[#25D366] text-white text-sm font-medium tracking-widest uppercase hover:bg-[#20b858] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
-                  <MessageCircle size={16} /> Book via WhatsApp
-                </a>
+                {!HIDE_CONTACT && (
+                  <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-2.5 bg-[#25D366] text-white text-sm font-medium tracking-widest uppercase hover:bg-[#20b858] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>
+                    <MessageCircle size={16} /> Book via WhatsApp
+                  </a>
+                )}
               </div>
             </Fade>
           ))}
@@ -639,6 +654,28 @@ function Contact() {
   return (
     <section id="contact" className="min-h-screen relative py-20 overflow-hidden flex items-center" style={{ background: "linear-gradient(135deg,#1A2416 0%,#2D5016 55%,#1A2416 100%)" }}>
       <div className="absolute inset-0 opacity-[.04]" style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #C4A45A 1px, transparent 0)", backgroundSize: "38px 38px" }} />
+      {/* Decorative cars in the empty space */}
+      <div className="absolute right-6 top-1/4 hidden sm:block pointer-events-none">
+        <svg className="w-28 h-12 opacity-60 transform rotate-6" viewBox="0 0 240 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 60 L40 35 L110 35 L140 60 L200 60 L220 45 L230 45 L230 65 L10 65 Z" fill="#C4A45A" />
+          <circle cx="60" cy="70" r="10" fill="#1A2416" />
+          <circle cx="160" cy="70" r="10" fill="#1A2416" />
+        </svg>
+      </div>
+      <div className="absolute right-20 top-1/2 hidden md:block pointer-events-none">
+        <svg className="w-36 h-14 opacity-40 transform -rotate-3" viewBox="0 0 280 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 65 L48 35 L140 35 L170 65 L240 65 L260 50 L270 50 L270 70 L8 70 Z" fill="#9fbf6b" />
+          <circle cx="90" cy="78" r="12" fill="#122012" />
+          <circle cx="200" cy="78" r="12" fill="#122012" />
+        </svg>
+      </div>
+      <div className="absolute right-10 bottom-24 hidden lg:block pointer-events-none">
+        <svg className="w-20 h-10 opacity-50 transform rotate-2" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 45 L35 25 L100 25 L130 45 L170 45 L185 35 L195 35 L195 55 L5 55 Z" fill="#C4A45A" />
+          <circle cx="60" cy="60" r="8" fill="#0f1a0d" />
+          <circle cx="140" cy="60" r="8" fill="#0f1a0d" />
+        </svg>
+      </div>
       <div className="relative max-w-5xl mx-auto px-5">
         <Fade className="text-center mb-12">
           <Label>Get In Touch</Label>
@@ -651,36 +688,43 @@ function Contact() {
         </Fade>
 
         {/* Big CTA buttons */}
-        <Fade delay={100} className="flex flex-col sm:flex-row gap-4 justify-center mb-14">
-          <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 px-10 py-5 bg-[#25D366] text-white font-bold tracking-[.15em] uppercase text-base hover:bg-[#20b858] transition-colors shadow-2xl"
-            style={{ fontFamily: "'Jost',sans-serif" }}>
-            <MessageCircle size={22} /> Chat on WhatsApp
-          </a>
-          <a href={`tel:${PHONE}`}
-            className="flex items-center justify-center gap-3 px-10 py-5 bg-[#C4A45A] text-[#1A2416] font-bold tracking-[.15em] uppercase text-base hover:bg-[#d4b46a] transition-colors shadow-2xl"
-            style={{ fontFamily: "'Jost',sans-serif" }}>
-            <Phone size={22} /> {PHONE_DISPLAY}
-          </a>
-        </Fade>
+        {!HIDE_CONTACT && (
+          <Fade delay={100} className="flex flex-col sm:flex-row gap-4 justify-center mb-14">
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 px-10 py-5 bg-[#25D366] text-white font-bold tracking-[.15em] uppercase text-base hover:bg-[#20b858] transition-colors shadow-2xl"
+              style={{ fontFamily: "'Jost',sans-serif" }}>
+              <MessageCircle size={22} /> Chat on WhatsApp
+            </a>
+            <a href={`tel:${PHONE}`} 
+              className="flex items-center justify-center gap-3 px-10 py-5 bg-[#C4A45A] text-[#1A2416] font-bold tracking-[.15em] uppercase text-base hover:bg-[#d4b46a] transition-colors shadow-2xl"
+              style={{ fontFamily: "'Jost',sans-serif" }}>
+              <Phone size={22} /> {PHONE_DISPLAY}
+            </a>
+          </Fade>
+        )}
 
         {/* Info cards */}
         <Fade delay={200} className="grid sm:grid-cols-3 gap-5">
-          {[
-            { I: Phone,  title: "Call Us",     val: PHONE_DISPLAY,                        href: `tel:${PHONE}` },
-            { I: MessageCircle, title: "WhatsApp", val: PHONE_DISPLAY,                    href: WA_LINK },
-            { I: MapPin, title: "Find Us",     val: ADDRESS,                              href: "#" },
-          ].map(({ I, title, val, href }) => (
-            <a key={title} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-              className="flex flex-col items-center text-center p-6 group"
-              style={{ background: "rgba(255,255,255,.05)", backdropFilter: "blur(10px)", border: "1px solid rgba(196,164,90,.15)" }}>
-              <div className="w-12 h-12 bg-[#C4A45A]/20 flex items-center justify-center mb-4 group-hover:bg-[#C4A45A]/40 transition-colors">
-                <I size={22} className="text-[#C4A45A]" />
-              </div>
-              <div className="text-[#C4A45A] text-[11px] tracking-[.2em] uppercase font-semibold mb-2" style={{ fontFamily: "'Jost',sans-serif" }}>{title}</div>
-              <div className="text-white/70 text-sm leading-relaxed" style={{ fontFamily: "'Jost',sans-serif" }}>{val}</div>
-            </a>
-          ))}
+          {(() => {
+            const items = HIDE_CONTACT
+              ? [{ I: MapPin, title: "Find Us", val: ADDRESS, href: "#" }]
+              : [
+                { I: Phone, title: "Call Us", val: PHONE_DISPLAY, href: `tel:${PHONE}` },
+                { I: MessageCircle, title: "WhatsApp", val: PHONE_DISPLAY, href: WA_LINK },
+                { I: MapPin, title: "Find Us", val: ADDRESS, href: "#" },
+              ];
+            return items.map(({ I, title, val, href }) => (
+              <a key={title} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
+                className="flex flex-col items-center text-center p-6 group"
+                style={{ background: "rgba(255,255,255,.05)", backdropFilter: "blur(10px)", border: "1px solid rgba(196,164,90,.15)" }}>
+                <div className="w-12 h-12 bg-[#C4A45A]/20 flex items-center justify-center mb-4 group-hover:bg-[#C4A45A]/40 transition-colors">
+                  <I size={22} className="text-[#C4A45A]" />
+                </div>
+                <div className="text-[#C4A45A] text-[11px] tracking-[.2em] uppercase font-semibold mb-2" style={{ fontFamily: "'Jost',sans-serif" }}>{title}</div>
+                <div className="text-white/70 text-sm leading-relaxed" style={{ fontFamily: "'Jost',sans-serif" }}>{val}</div>
+              </a>
+            ));
+          })()}
         </Fade>
       </div>
     </section>
@@ -719,14 +763,18 @@ function Footer() {
           <div>
             <h4 className="text-[#C4A45A] text-[11px] tracking-[.25em] uppercase font-semibold mb-4" style={{ fontFamily: "'Jost',sans-serif" }}>Get in Touch</h4>
             <div className="space-y-3 mb-5">
-              <div className="flex items-start gap-2.5"><Phone size={14} className="text-[#C4A45A] mt-0.5 flex-shrink-0" /><span className="text-white/45 text-sm" style={{ fontFamily: "'Jost',sans-serif" }}>{PHONE_DISPLAY}</span></div>
+              {!HIDE_CONTACT && (
+                <div className="flex items-start gap-2.5"><Phone size={14} className="text-[#C4A45A] mt-0.5 flex-shrink-0" /><span className="text-white/45 text-sm" style={{ fontFamily: "'Jost',sans-serif" }}>{PHONE_DISPLAY}</span></div>
+              )}
               <div className="flex items-start gap-2.5"><Mail size={14} className="text-[#C4A45A] mt-0.5 flex-shrink-0" /><a href="mailto:sangamaretreat@gmail.com" className="text-white/45 hover:text-[#C4A45A] text-sm transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}>sangamaretreat@gmail.com</a></div>
               <div className="flex items-start gap-2.5"><MapPin size={14} className="text-[#C4A45A] mt-0.5 flex-shrink-0" /><span className="text-white/45 text-sm leading-relaxed" style={{ fontFamily: "'Jost',sans-serif" }}>{ADDRESS}</span></div>
             </div>
-            <div className="flex gap-2.5">
-              <a href={`tel:${PHONE}`} className="flex-1 flex items-center justify-center gap-1 py-2.5 bg-[#2D5016] text-white text-xs tracking-widest uppercase hover:bg-[#3d6020] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}><Phone size={12} />Call</a>
-              <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1 py-2.5 bg-[#25D366] text-white text-xs tracking-widest uppercase hover:bg-[#20b858] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}><MessageCircle size={12} />WhatsApp</a>
-            </div>
+            {!HIDE_CONTACT && (
+              <div className="flex gap-2.5">
+                <a href={`tel:${PHONE}`} className="flex-1 flex items-center justify-center gap-1 py-2.5 bg-[#2D5016] text-white text-xs tracking-widest uppercase hover:bg-[#3d6020] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}><Phone size={12} />Call</a>
+                <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1 py-2.5 bg-[#25D366] text-white text-xs tracking-widest uppercase hover:bg-[#20b858] transition-colors" style={{ fontFamily: "'Jost',sans-serif" }}><MessageCircle size={12} />WhatsApp</a>
+              </div>
+            )}
           </div>
         </div>
         <div className="mt-12 pt-7 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
@@ -744,6 +792,15 @@ function Footer() {
 
 // ── MOBILE BAR ───────────────────────────────────────────────────────────────
 function MobileBar() {
+  if (HIDE_CONTACT) {
+    return (
+      <div className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-[#1A2416] border-t border-white/10 flex">
+        <a href="#contact" className="flex-1 flex flex-col items-center justify-center py-2.5 gap-0.5 text-white/65 hover:text-[#C4A45A] transition-colors">
+          <MapPin size={17} /><span className="text-[9px] tracking-widest uppercase" style={{ fontFamily: "'Jost',sans-serif" }}>Find Us</span>
+        </a>
+      </div>
+    );
+  }
   return (
     <div className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-[#1A2416] border-t border-white/10 flex">
       <a href={`tel:${PHONE}`} className="flex-1 flex flex-col items-center justify-center py-2.5 gap-0.5 text-white/65 hover:text-[#C4A45A] transition-colors">
